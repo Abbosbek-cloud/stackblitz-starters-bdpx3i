@@ -33,10 +33,11 @@ export default function Home() {
         </div>
       </div>
       <div className="flex justify-center flex-col gap-2">
-        {names.map((n) => {
+        {names.map((n,i) => {
+          // @ts-ignore
           const img = data[n];
           return (
-            <div>
+            <div key={i}>
               {img && <img src={img} height="250px" />}
               <input
                 name={n}
@@ -47,6 +48,7 @@ export default function Home() {
                   const { name, files } = e.target;
                   setData((pr) => ({
                     ...pr,
+                    // @ts-ignore
                     [name]: URL.createObjectURL(files[0]),
                   }));
                 }}
